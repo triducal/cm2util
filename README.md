@@ -51,6 +51,15 @@ saveCode = circuits.export(Mux)
 print(saveCode)
 ```
 
+### Compress
+
+```python
+from cm2util import Compress
+
+dpaste_link = Compress(saveCode)
+print(dpaste_link)
+```
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
