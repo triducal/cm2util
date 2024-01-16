@@ -55,6 +55,13 @@ class Circuit:
             
         return block
     
+    def NOT(self, input):
+        block = self.save.addBlock(cm2.NOR, (0,0,0))
+        
+        self.save.addConnection(input, block)
+            
+        return block
+    
     def NAND(self, *inputs):
         block = self.save.addBlock(cm2.NAND, (0,0,0))
         

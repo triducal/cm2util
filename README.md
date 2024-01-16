@@ -33,6 +33,22 @@ from cm2util import Memory
 
 ```python
 from cm2util import Circuit
+
+circuits = Circuit()
+
+@circuits.build
+def Mux(D0, D1, s):
+
+    not1 = circuits.NOT(s)
+    and1 = circuits.AND(D0, not1)
+    and2 = circuits.AND(D1, s)
+    or1 = circuits.OR(and1, and2)
+
+    output = or1
+    return output
+
+saveCode = circuits.export(Mux)
+print(saveCode)
 ```
 
 ## Contributing
