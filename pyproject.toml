@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cm2util"
+version = "0.0.1"
+authors = [
+  { name="Triducal", email="triducalrl@gmail.com" },
+]
+description = "A collection of utility modules to aid in the creation of Circuit Maker 2 builds."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = ["pillow", "numpy", "cm2py", "requests"]
+
+[project.urls]
+Homepage = "https://github.com/triducal/cm2util"
+Issues = "https://github.com/triducal/cm2util/issues"
