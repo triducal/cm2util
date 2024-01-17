@@ -2,11 +2,12 @@ from PIL import Image as PIL_Image
 import numpy as np
 import cm2py as cm2
 import requests
+from .cm2compress import Compress
 
 class Image:
     def __init__(self, image_path, size=50):
         self.raw = self.__generate(image_path, size)
-        self.link = self.__createLink()
+        self.link = Compress(self.raw)
 
     def __generate(self, image_path, size):
 
@@ -29,9 +30,5 @@ class Image:
                 save.addBlock(cm2.TILE, (x,y,0), properties=[rgb[0], rgb[1], rgb[2]])
 
         return save.exportSave()
-    
-    def __createLink(self):
-        data = {"content": self.raw, "syntax": "text", "expiry_days": 1}
-        headers = {"User-Agent": "CM2 IMAGE"}
-        r = requests.post("https://dpaste.org/api/", data=data, headers=headers)
-        return r.text.strip("\"") + "/raw"
+
+        
