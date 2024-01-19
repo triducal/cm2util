@@ -36,18 +36,38 @@ from cm2util import Circuit
 
 circuits = Circuit()
 
-@circuits.build
-def Mux(D0, D1, s):
+@circuits.build()
+def Memory(input,save):
 
-    not1 = circuits.NOT(s)
-    and1 = circuits.AND(D0, not1)
-    and2 = circuits.AND(D1, s)
-    or1 = circuits.OR(and1, and2)
 
-    output = or1
-    return output
+    and1 = circuits.AND(input,save)
+    and2 = circuits.AND(save,and1)
+    flip = circuits.FLIPFLOP(and1,and2)
 
-saveCode = circuits.export(Mux)
+
+    return flip
+
+#Specify Bit-Length
+@circuits.build(input=8)
+def Byte(input,save):
+
+
+    m1 = Memory(input[0],save)
+    m2 = Memory(input[1],save)
+    m3 = Memory(input[2],save)
+    m4 = Memory(input[3],save)
+    m5 = Memory(input[4],save)
+    m6 = Memory(input[5],save)
+    m7 = Memory(input[6],save)
+    m8 = Memory(input[7],save)
+
+
+    out = [m1,m2,m3,m4,m5,m6,m7,m8]
+
+
+    return out
+
+saveCode = circuits.export(Byte)
 print(saveCode)
 ```
 
